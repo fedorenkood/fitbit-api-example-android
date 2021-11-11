@@ -4,16 +4,28 @@ import com.fitbit.authentication.ui.LoginActivity;
 import com.fitbit.fitbitcommon.network.BasicHttpRequestBuilder;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import android.util.Base64;
 
-import com.android.annotations.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.browser.customtabs.CustomTabsIntent;
+
 import com.sveinungkb.SecurePreferences;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 /**
  * Created by jboggess on 9/14/16.

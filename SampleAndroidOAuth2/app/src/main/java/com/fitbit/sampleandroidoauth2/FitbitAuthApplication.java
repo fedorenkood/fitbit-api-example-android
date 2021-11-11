@@ -32,7 +32,7 @@ public class FitbitAuthApplication extends Application {
      */
 
     //!! THIS SHOULD BE IN AN ANDROID KEYSTORE!! See https://developer.android.com/training/articles/keystore.html
-    private static final String CLIENT_SECRET = "86401692efd006045a157f45755000d0";
+    private static final String CLIENT_SECRET = "d1eca964e3e05dde211e0c4c3060d78d";
 
     /**
      * This key was generated using the SecureKeyGenerator [java] class. Run as a Java application (not Android)
@@ -67,7 +67,7 @@ public class FitbitAuthApplication extends Application {
                     .setTokenExpiresIn(2592000L) // 30 days
                     .setBeforeLoginActivity(new Intent(context, mainActivityClass))
                     .addRequiredScopes(Scope.profile, Scope.settings)
-                    .addOptionalScopes(activity, Scope.weight)
+                    .addOptionalScopes(Scope.activity, Scope.weight)
                     .setLogoutOnAuthFailure(true)
 
                     .build();

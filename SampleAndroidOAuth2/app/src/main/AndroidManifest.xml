@@ -13,10 +13,10 @@
 
         <meta-data
             android:name="com.fitbit.sampleandroidoauth2.CLIENT_ID"
-            android:value="227YZT"/>
+            android:value="23BMV5"/>
         <meta-data
             android:name="com.fitbit.sampleandroidoauth2.REDIRECT_URL"
-            android:value="https://finished"/>
+            android:value="intent://sampleandroidoauth2.fitbit.com#Intent;scheme=http;package=com.fitbit.sampleandroidoauth2;category=android.intent.category.BROWSABLE;component=com.fitbit.sampleandroidoauth2.RootActivity;action=android.intent.action.VIEW;end"/>
 
         <activity
             android:name=".RootActivity"
@@ -25,6 +25,14 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="sampleandroidoauth2.fitbit.com"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
         <activity android:name=".UserDataActivity"

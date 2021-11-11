@@ -5,12 +5,12 @@ import com.fitbit.authentication.AuthenticationManager;
 import com.fitbit.authentication.Scope;
 import com.fitbit.fitbitcommon.network.BasicHttpRequest;
 import com.fitbit.fitbitcommon.network.BasicHttpResponse;
+import com.google.gson.Gson;
 
 import android.app.Activity;
 import android.content.AsyncTaskLoader;
 import android.os.Handler;
 
-import com.google.gson.Gson;
 
 import java.util.Locale;
 

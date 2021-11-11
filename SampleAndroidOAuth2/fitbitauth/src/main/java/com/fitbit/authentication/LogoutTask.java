@@ -6,8 +6,9 @@ import com.fitbit.fitbitcommon.network.BasicHttpResponse;
 
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.support.annotation.NonNull;
 import android.util.Base64;
+
+import androidx.annotation.NonNull;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

@@ -1,6 +1,6 @@
 package com.fitbit.authentication;
 
-import org.apache.commons.codec.binary.Base64;
+import android.util.Base64;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -18,7 +18,8 @@ public class SecureKeyGenerator {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(256);
             SecretKey secretKey = keyGen.generateKey();
-            System.out.println(Base64.encodeBase64String(secretKey.getEncoded()));
+            int flags = Base64.NO_WRAP | Base64.URL_SAFE;
+            System.out.println(android.util.Base64.encodeToString(secretKey.getEncoded(), flags));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

@@ -4,16 +4,17 @@ import com.fitbit.authentication.AuthenticationManager;
 import com.fitbit.sampleandroidoauth2.databinding.ActivityUserDataBinding;
 
 import android.app.ActionBar;
-import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
-public class UserDataActivity extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.viewpager.widget.ViewPager;
+
+public class UserDataActivity extends AppCompatActivity {
 
     private ActivityUserDataBinding binding;
     private UserDataPagerAdapter userDataPagerAdapter;
@@ -28,7 +29,7 @@ public class UserDataActivity extends Activity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_user_data);
         binding.setLoading(false);
 
-        userDataPagerAdapter = new UserDataPagerAdapter(getFragmentManager());
+        userDataPagerAdapter = new UserDataPagerAdapter(getSupportFragmentManager());
         binding.viewPager.setAdapter(userDataPagerAdapter);
 
         binding.viewPager.addOnPageChangeListener(

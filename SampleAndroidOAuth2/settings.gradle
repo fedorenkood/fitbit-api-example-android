@@ -1,1 +1,2 @@
 include ':app', ':fitbitapi', ':fitbitauth', ':fitbitcommon'
+rootProject.name = "FitBitTest"

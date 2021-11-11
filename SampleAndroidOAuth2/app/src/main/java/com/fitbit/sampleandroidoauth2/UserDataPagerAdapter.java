@@ -9,9 +9,9 @@ import com.fitbit.sampleandroidoauth2.fragments.InfoFragment;
 import com.fitbit.sampleandroidoauth2.fragments.ProfileFragment;
 import com.fitbit.sampleandroidoauth2.fragments.WeightLogFragment;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.support.v13.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,5 +1,6 @@
 package com.fitbit.sampleandroidoauth2;
 
+import com.fitbit.authentication.AuthenticationConfiguration;
 import com.fitbit.authentication.AuthenticationHandler;
 import com.fitbit.authentication.AuthenticationManager;
 import com.fitbit.authentication.AuthenticationResult;
@@ -8,14 +9,22 @@ import com.fitbit.sampleandroidoauth2.databinding.ActivityRootBinding;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
+import androidx.databinding.DataBindingUtil;
+
+import java.security.NoSuchAlgorithmException;
 import java.util.Set;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 public class RootActivity extends AppCompatActivity implements AuthenticationHandler {
 
@@ -57,7 +66,31 @@ public class RootActivity extends AppCompatActivity implements AuthenticationHan
         /**
          *  3. Call login to show the login UI
          */
-        AuthenticationManager.login(this);
+//        AuthenticationManager.login(this);
+        AuthenticationConfiguration authenticationConfiguration = AuthenticationManager.getAuthenticationConfiguration();
+        // Authorization data
+        try {
+
+            String clientId = authenticationConfiguration.getClientCredentials().getClientId();
+            KeyGenerator keyGen = KeyGenerator.getInstance("AES");
+            keyGen.init(256);
+            SecretKey secretKey = keyGen.generateKey();
+            /*MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest("verifier_code".getBytes("UTF-8"));*/
+            int flags = Base64.NO_WRAP | Base64.URL_SAFE;
+            String code_verifier = android.util.Base64.encodeToString(secretKey.getEncoded(), flags);
+            StringBuilder urlBuilder = new StringBuilder();
+            urlBuilder.append("https://www.fitbit.com/oauth2/authorize?client_id=")
+                    .append(clientId)
+                    .append("&response_type=code")
+                    .append("&code_challenge=").append(code_verifier).append("&code_challenge_method=S256")
+                    .append("&scope=weight%20nutrition%20activity%20sleep%20heartrate");// Chrome Custom tabs
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(this, Uri.parse(urlBuilder.toString()));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -124,5 +157,8 @@ public class RootActivity extends AppCompatActivity implements AuthenticationHan
                 })
                 .create()
                 .show();
+    }
+
+    public void onLogoutClick(View view) {
     }
 }

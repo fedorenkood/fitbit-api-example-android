@@ -3,21 +3,22 @@ package com.fitbit.sampleandroidoauth2.fragments;
 import com.fitbit.api.loaders.ResourceLoaderResult;
 import com.fitbit.sampleandroidoauth2.R;
 import com.fitbit.sampleandroidoauth2.databinding.LayoutInfoBinding;
+import com.google.gson.Gson;
 
-import android.app.Fragment;
 import android.app.LoaderManager;
 import android.content.Loader;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +54,7 @@ public abstract class InfoFragment<T> extends Fragment implements LoaderManager.
     @Override
     public void onResume() {
         super.onResume();
-        getLoaderManager().initLoader(getLoaderId(), null, this).forceLoad();
+        // getLoaderManager().initLoader(getLoaderId(), null, this).forceLoad();
 
     }
 
